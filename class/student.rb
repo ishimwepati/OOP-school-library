@@ -6,7 +6,8 @@ class Student < Person
     @classroom = nil
   end
 
-  def play(_hooky) # Updated method definition with an unused parameter
+  # Updated method definition with an unused parameter
+  def play(_hooky)
     '¯\\(ツ)/¯'
   end
 
