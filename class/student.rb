@@ -9,7 +9,7 @@ class Student < Person
     @classroom = nil
   end
 
-  def play_hooky
+  def play hooky
     '¯\\(ツ)/¯'
   end
 
@@ -18,4 +18,3 @@ class Student < Person
     classroom.add_student(self)
   end
 end
-
