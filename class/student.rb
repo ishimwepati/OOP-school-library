@@ -1,6 +1,3 @@
-require_relative 'person'
-require_relative 'classroom'
-
 class Student < Person
   attr_accessor :classroom
 
@@ -9,7 +6,7 @@ class Student < Person
     @classroom = nil
   end
 
-  def play hooky
+  def play(_hooky) # Updated method definition with an unused parameter
     '¯\\(ツ)/¯'
   end
 
