@@ -1,9 +1,14 @@
-class Person < Nameable
-  attr_accessor :name, :age, :rentals
+require_relative 'nameable'
+require_relative 'rental'
+require 'set'
 
-  def initialize(age, name = 'Unknown', parent_permission: true)
+class Person < Nameable
+  attr_reader :id, :parent_permission, :rentals
+  attr_accessor :name, :age
+
+  def initialize(age, parent_permission, name = 'Unknown')
     super()
-    @id = generate_unique_id
+    @id = generate_id
     @name = name
     @age = age
     @parent_permission = parent_permission
@@ -14,17 +19,9 @@ class Person < Nameable
     Rental.new(date, book, self)
   end
 
-  def can_use_services?
-    of_age? || @parent_permission
-  end
-
-  def correct_name
-    name
-  end
-
   private
 
-  def generate_unique_id
+  def generate_id
     used_ids = Set.new
     loop do
       new_id = rand(1000..9999)
@@ -35,7 +32,15 @@ class Person < Nameable
     end
   end
 
-  def of_age?
-    @age >= 18
+  def of_age
+    age >= 18
+  end
+
+  def can_use_services
+    age >= 18 || parent_permission == true
+  end
+
+  def correct_name
+    name
   end
 end
